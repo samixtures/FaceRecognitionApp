@@ -1,11 +1,9 @@
 import './App.css';
-import Navigation from './Components/Navigation/Navigation'
-import Logo from './Components/Logo/Logo'
-import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm'
-import Rank from './Components/Rank/Rank'
-// import Particles from "react-tsparticles";
-// import { loadFull } from "tsparticles";
-// import { useCallback } from "react";
+import Navigation from './components/Navigation/Navigation'
+import Logo from './components/Logo/Logo'
+import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm'
+import Rank from './components/Rank/Rank'
+import Particles from './components/Particles'
 
 
 
@@ -16,6 +14,7 @@ function App() {
       <Logo/>
       <Rank/>
       <ImageLinkForm/>
+      <Particles id="tsparticles" />
 {/* {      <Navigation/>
       <Logo/>
       <ImageLinkForm/>
