@@ -20,10 +20,10 @@ const ParticlesComponent = (props) => {
       },
       interactivity: {
         events: {
-          onClick: {
-            enable: true, // enables the click event
-            mode: "push", // adds the particles on click
-          },
+          // onClick: {
+          //   enable: true, // enables the click event
+          //   mode: "push", // adds the particles on click
+          // },
           onHover: {
             enable: true, // enables the hover event
             mode: "repulse", // make the particles run away from the cursor
