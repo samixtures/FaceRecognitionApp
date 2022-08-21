@@ -84,7 +84,7 @@ class App extends Component {
         onInputChange={this.onInputChange} 
         onButtonSubmit={this.onButtonSubmit}
         />
-        <FaceRecognition/>
+        <FaceRecognition imageUrl = {IMAGE_URL}/>
         <Particles id="tsparticles" />
   {/* {      <Navigation/>
         <Logo/>
