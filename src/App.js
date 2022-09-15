@@ -18,7 +18,7 @@ class App extends Component {
     }
   }
   onInputChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.setState({input: event.target.value});
     // IMAGE_URL = event.taraget.value;
     // console.log(IMAGE_URL)
@@ -34,10 +34,10 @@ class App extends Component {
     IMAGE_URL = this.imageUrl;
     const { imageUrl, input } = this.state;
     IMAGE_URL = input;
-    console.log("input is", input);
-    console.log("imageUrl is", imageUrl);
-    console.log("INPUT IS", input);
-    console.log("IMAGE URL IS", IMAGE_URL);
+    // console.log("input is", input);
+    // console.log("imageUrl is", imageUrl);
+    // console.log("INPUT IS", input);
+    // console.log("IMAGE URL IS", IMAGE_URL);
 
     // Regardless of my lack of understanding, it works with this code.
     // The image shows up updated based on the URL typed into the input bar
@@ -59,8 +59,8 @@ class App extends Component {
     const PAT = 'f69d3700448f4e23b9af49398d30fe47';
     const APP_ID = 'my-first-application';
     // Change these to whatever model and image URL you want to use
-    const MODEL_ID = 'general-image-recognition';
-    const MODEL_VERSION_ID = 'aa7f35c01e0642fda5cf400f543e7c40';    
+    const MODEL_ID = 'face-detection';
+    const MODEL_VERSION_ID = '45fb9a671625463fa646c3523a3087d5';    
 
     ///////////////////////////////////////////////////////////////////////////////////
     // YOU DO NOT NEED TO CHANGE ANYTHING BELOW THIS LINE TO RUN THIS EXAMPLE
@@ -106,8 +106,8 @@ class App extends Component {
     // For some reason imageUrl and input states are undefined regardless of what code I add anywhere
     // unless I add these few lines below
     const { imageUrl, input } = this.state;
-    console.log("input is", input);
-    console.log("imageUrl is", imageUrl);
+    // console.log("input is", input);
+    // console.log("imageUrl is", imageUrl);
     return (
       <div className="App">
         <Navigation/>
