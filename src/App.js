@@ -15,6 +15,7 @@ class App extends Component {
     this.state = {
       input: '',
       imageUrl: 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/201810/stockvault-person-studying-and-learning---knowledge-concept178241_0.jpeg?yCXmhi7e2ARwUtzHHlvtcrgETnDgFwCK&size=1200:675',
+      box : {},
     }
   }
   onInputChange = (event) => {
@@ -25,9 +26,27 @@ class App extends Component {
   }
 
   calculateFaceLocation = (data) => {
-    console.log(data.outputs[0].data.regions[0].region_info.bounding_box);
+    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+    console.log(clarifaiFace);
+    const image = document.getElementById('inputImage');
+    const width = Number(image.width);
+    const height = Number(image.height);
+    console.log("Width and height:", width, height);
+    return {
+      leftCol: clarifaiFace.left_col * width,
+      topRow: clarifaiFace.top_row * height,
+      rightCol: width - (clarifaiFace.right_col) * width,
+      bottomRow: height - (clarifaiFace.bottom_row * height)
+    };
   }
   
+  displayFaceBox = (box) => {
+    console.log(box);
+    this.setState({box: box});
+    //Kinda weird that console logging this.box doesn't give the same output as just console.log(box)
+    // console.log(this.state.box);
+  }
+
   onButtonSubmit = () => {
 
     // I don't understand why these console.logs are undefined unless I do this destructuring process.
@@ -100,7 +119,7 @@ class App extends Component {
     // this will default to the latest version_id
     fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
     .then(response => response.json())
-    .then(result => this.calculateFaceLocation(result))
+    .then(result => this.displayFaceBox(this.calculateFaceLocation(result)))
     .catch(error => console.log('error', error));
     // .then(result => this.calculateFaceLocation())
     // // outputs[0].data.regions[0].region_info.bounding)
@@ -123,7 +142,7 @@ class App extends Component {
         onInputChange={this.onInputChange} 
         onButtonSubmit={this.onButtonSubmit}
         />
-        <FaceRecognition imageUrl = {IMAGE_URL}/>
+        <FaceRecognition box = {this.state.box} imageUrl = {IMAGE_URL}/>
         <Particles id="tsparticles" />
   {/* {      <Navigation/>
         <Logo/>
