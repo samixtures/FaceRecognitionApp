@@ -23,6 +23,10 @@ class App extends Component {
     // IMAGE_URL = event.taraget.value;
     // console.log(IMAGE_URL)
   }
+
+  calculateFaceLocation = (data) => {
+    console.log(data.outputs[0].data.regions[0].region_info.bounding_box);
+  }
   
   onButtonSubmit = () => {
 
@@ -96,8 +100,9 @@ class App extends Component {
     // this will default to the latest version_id
     fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
     .then(response => response.json())
-    .then(result => console.log(result.outputs[0].data.regions[0].region_info.bounding_box))
+    .then(result => this.calculateFaceLocation(result))
     .catch(error => console.log('error', error));
+    // .then(result => this.calculateFaceLocation())
     // // outputs[0].data.regions[0].region_info.bounding)
     
   }
