@@ -95,9 +95,10 @@ class App extends Component {
     // https://api.clarifai.com/v2/models/{YOUR_MODEL_ID}/outputs
     // this will default to the latest version_id
     fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
+    .then(response => response.json())
+    .then(result => console.log(result.outputs[0].data.regions[0].region_info.bounding_box))
     .catch(error => console.log('error', error));
+    // // outputs[0].data.regions[0].region_info.bounding)
     
   }
   
