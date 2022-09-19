@@ -17,6 +17,7 @@ class App extends Component {
       input: '',
       imageUrl: 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/201810/stockvault-person-studying-and-learning---knowledge-concept178241_0.jpeg?yCXmhi7e2ARwUtzHHlvtcrgETnDgFwCK&size=1200:675',
       box : {},
+      route: 'signin',
     }
   }
   onInputChange = (event) => {
@@ -126,6 +127,10 @@ class App extends Component {
     // // outputs[0].data.regions[0].region_info.bounding)
     
   }
+
+  onRouteChange = (prop) => {
+    this.setState({route:prop});
+  }
   
   
   render() {
@@ -136,15 +141,19 @@ class App extends Component {
     // console.log("imageUrl is", imageUrl);
     return (
       <div className="App">
-        <Navigation/>
-        <Signin/>
-        <Logo/>
-        <Rank/>
-        <ImageLinkForm 
-        onInputChange={this.onInputChange} 
-        onButtonSubmit={this.onButtonSubmit}
-        />
-        <FaceRecognition box = {this.state.box} imageUrl = {IMAGE_URL}/>
+        <Navigation onRouteChange={this.onRouteChange}/>
+        { this.state.route == 'signin'
+        ? <Signin onRouteChange={this.onRouteChange}/>
+        : <div>
+            <Logo/>
+            <Rank/>
+            <ImageLinkForm 
+            onInputChange={this.onInputChange} 
+            onButtonSubmit={this.onButtonSubmit}
+            />
+            <FaceRecognition box = {this.state.box} imageUrl = {IMAGE_URL}/>
+          </div>
+        }
         <Particles id="tsparticles" />
   {/* {      <Navigation/>
         <Logo/>
