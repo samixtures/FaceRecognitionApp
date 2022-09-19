@@ -7,6 +7,7 @@ import Rank from './components/Rank/Rank'
 import FaceRecognition from './components/FaceRecognition/FaceRecognition'
 import Particles from './components/Particles'
 import Signin from './components/Signin/Signin'
+import Register from './components/Register/Register'
 
 let IMAGE_URL = 'https://cdn.photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg';
 
@@ -142,9 +143,8 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation onRouteChange={this.onRouteChange}/>
-        { this.state.route == 'signin'
-        ? <Signin onRouteChange={this.onRouteChange}/>
-        : <div>
+        { this.state.route == 'home'
+        ? <div>
             <Logo/>
             <Rank/>
             <ImageLinkForm 
@@ -152,7 +152,11 @@ class App extends Component {
             onButtonSubmit={this.onButtonSubmit}
             />
             <FaceRecognition box = {this.state.box} imageUrl = {IMAGE_URL}/>
-          </div>
+          </div> 
+        : ( this.state.route == 'signin'
+          ?  <Signin onRouteChange={this.onRouteChange}/>
+          : <Register onRouteChange={this.onRouteChange}/>
+          )
         }
         <Particles id="tsparticles" />
   {/* {      <Navigation/>
