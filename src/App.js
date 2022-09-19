@@ -6,6 +6,7 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm'
 import Rank from './components/Rank/Rank'
 import FaceRecognition from './components/FaceRecognition/FaceRecognition'
 import Particles from './components/Particles'
+import Signin from './components/Signin/Signin'
 
 let IMAGE_URL = 'https://cdn.photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg';
 
@@ -136,6 +137,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation/>
+        <Signin/>
         <Logo/>
         <Rank/>
         <ImageLinkForm 
