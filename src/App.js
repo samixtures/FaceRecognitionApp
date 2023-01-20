@@ -19,7 +19,26 @@ class App extends Component {
       imageUrl: 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/201810/stockvault-person-studying-and-learning---knowledge-concept178241_0.jpeg?yCXmhi7e2ARwUtzHHlvtcrgETnDgFwCK&size=1200:675',
       box : {},
       route: 'signin',
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: '0',
+        joined: ''
+      }
     }
+  }
+
+  loadUser = (data) => {
+     this.setState({user: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      entries: '0',
+      joined: data.joined
+     }
+    })
+    // console.log(this.state.user);
   }
 
   onInputChange = (event) => {
@@ -156,7 +175,10 @@ class App extends Component {
           </div> 
         : ( this.state.route == 'signin'
           ?  <Signin onRouteChange={this.onRouteChange}/>
-          : <Register onRouteChange={this.onRouteChange}/>
+          : <Register 
+              onRouteChange={this.onRouteChange}
+              loadUser={this.loadUser}
+            />
           )
         }
         <Particles id="tsparticles" />
