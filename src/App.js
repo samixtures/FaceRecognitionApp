@@ -19,9 +19,29 @@ class App extends Component {
       imageUrl: 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/201810/stockvault-person-studying-and-learning---knowledge-concept178241_0.jpeg?yCXmhi7e2ARwUtzHHlvtcrgETnDgFwCK&size=1200:675',
       box : {},
       route: 'signin',
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: '0',
+        joined: ''
+      }
       isSignedIn: 'false'
     }
   }
+
+  loadUser = (data) => {
+     this.setState({user: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      entries: '0',
+      joined: data.joined
+     }
+    })
+    // console.log(this.state.user);
+  }
+
   onInputChange = (event) => {
     // console.log(event.target.value);
     this.setState({input: event.target.value});
@@ -152,7 +172,10 @@ class App extends Component {
         { this.state.route == 'home'
         ? <div>
             <Logo/>
-            <Rank/>
+            <Rank
+              name={this.state.user.name}
+              entries={this.state.user.entries}
+            />
             <ImageLinkForm 
             onInputChange={this.onInputChange} 
             onButtonSubmit={this.onButtonSubmit}
@@ -160,8 +183,14 @@ class App extends Component {
             <FaceRecognition box = {this.state.box} imageUrl = {IMAGE_URL}/>
           </div> 
         : ( this.state.route == 'signin'
-          ?  <Signin onRouteChange={this.onRouteChange}/>
-          : <Register onRouteChange={this.onRouteChange}/>
+          ?  <Signin 
+                onRouteChange={this.onRouteChange}
+                loadUser={this.loadUser}
+              />
+          : <Register 
+              onRouteChange={this.onRouteChange}
+              loadUser={this.loadUser}
+            />
           )
         }
         <Particles id="tsparticles" />
