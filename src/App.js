@@ -19,6 +19,7 @@ class App extends Component {
       imageUrl: 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/201810/stockvault-person-studying-and-learning---knowledge-concept178241_0.jpeg?yCXmhi7e2ARwUtzHHlvtcrgETnDgFwCK&size=1200:675',
       box : {},
       route: 'signin',
+      isSignedIn: 'false'
     }
   }
   onInputChange = (event) => {
@@ -130,6 +131,11 @@ class App extends Component {
   }
 
   onRouteChange = (prop) => {
+    if (prop === 'signout') {
+      this.setState({isSignedIn: false});
+    } else if (prop === 'home') {
+      this.setState({isSignedIn: true});
+    }
     this.setState({route:prop});
   }
   
@@ -142,7 +148,7 @@ class App extends Component {
     // console.log("imageUrl is", imageUrl);
     return (
       <div className="App">
-        <Navigation onRouteChange={this.onRouteChange}/>
+        <Navigation isSignedIn = {this.state.isSignedIn} onRouteChange={this.onRouteChange}/>
         { this.state.route == 'home'
         ? <div>
             <Logo/>
